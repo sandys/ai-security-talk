@@ -54,6 +54,6 @@ sequenceDiagram
 - Test adversarial JSON: unknown fields, duplicate concepts, extreme values, Unicode confusables, strings where numbers are expected, and policy text embedded inside data fields.
 - Escape or render output safely for its final sink. Valid JSON can still contain HTML/SQL/prompt injection for the next component.
 
-Run `04_guardrails_pydantic.ipynb`. The Pydantic path runs offline; the same schema is then wrapped with Guardrails AI when the full dependency set is installed.
+Run `04_guardrails_pydantic.ipynb`. The Pydantic path shows six malformed candidates failing closed and one *structurally valid but content-unsafe* candidate passing. The same schema is then wrapped in a Guardrails AI `Guard.for_pydantic(...)` with a custom `@register_validator` (`workshop/no-secret-marker`) attached via `json_schema_extra={"validators": [...]}`, run once with `OnFailAction.EXCEPTION` and once with `OnFailAction.FIX`, so the difference between *schema* and *content* validation — and between validation and authorization — is concrete.
 
 **Done means:** invalid candidates are rejected, valid structure still passes through a separate policy decision, and a JSON validation report is exported.

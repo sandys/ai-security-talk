@@ -46,6 +46,6 @@ flowchart TD
 - Prefer formats designed without arbitrary code execution where compatible, but still validate tensor metadata, configuration, provenance, and resource limits.
 - Run conversion or deeper inspection in a network-restricted disposable sandbox with no production credentials.
 
-`07_modelscan.ipynb` creates a benign and a deliberately suspicious pickle **without loading either**, hashes them, and optionally scans them through ModelScan.
+`07_modelscan.ipynb` creates a benign and a deliberately suspicious pickle **without loading either**, hashes them, scans both through the ModelScan CLI (`-r json` report, exit code 0 vs 1, `CRITICAL: Use of unsafe operator 'system'`) and the Python API (`ModelScan(...).scan()`), and asserts on the results. It then encodes the admission policy as code (unscanned, unverified-provenance, or flagged artifacts are all `block`). The scanner binary is resolved with `workshop_utils.cli("modelscan")` so it works even when the venv is not on `PATH`.
 
 **Done means:** the scanner runs before any loader, the decision records digest/source/scanner version/findings, and an unsafe or unsupported artifact is blocked rather than “tried once.”

@@ -46,6 +46,6 @@ flowchart LR
 - Validate mitigations on held-out data and in the deployed workflow; shifting one metric can worsen another group or the underlying service.
 - Publish a **system** card for RAG/agent products: base model, prompts, retrieval, tools, policies, data, monitoring, and human oversight all affect outcomes.
 
-Run `09A_fairlearn.ipynb` for synthetic subgroup analysis, then `09B_model_and_system_card.ipynb` to produce a release-facing card from workshop evidence.
+Run `09A_fairlearn.ipynb` for synthetic subgroup analysis — Fairlearn's `MetricFrame` with the built-in `count`, `selection_rate`, `false_positive_rate`, `false_negative_rate`, plus `demographic_parity_difference` / `equalized_odds_difference`, a bootstrap CI, and a plot — then `09B_model_and_system_card.ipynb` to produce a release-facing card that pulls its numbers (attack-success rates, garak results, incident detection, equalized-odds gap) from the `_evidence/` files earlier labs produced. The card notebook fails if a cited number is missing, so run the earlier modules first.
 
 **Done means:** no aggregate metric hides a known subgroup failure; uncertainty and sample size are visible; the card states intended use, excluded use, security/privacy controls, evaluations, limitations, monitoring, and accountable owners.

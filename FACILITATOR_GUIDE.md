@@ -34,9 +34,9 @@ sequenceDiagram
 
 ## Before the room arrives
 
-- Use Python 3.12 and install `requirements.txt` while network access is reliable.
-- Run `python check_environment.py` and `python verify_notebooks.py --mode full`.
-- Launch Jupyter from the toolkit root so local imports resolve.
+- Use Python 3.12: `uv sync` (or `pip install --require-hashes -r requirements.txt`) while network access is reliable. The environment is ~2.3 GB (CPU-only torch); do it the day before, not in the room.
+- Run `uv run python check_environment.py` and `uv run python verify_notebooks.py --mode full` on the *actual* laptops or image attendees will use — it executes every notebook the way JupyterLab opens it and refuses to pass if a specialist tool is missing.
+- Launch Jupyter from anywhere; every notebook's first cell locates the toolkit root. Tell attendees to run cells in order (or Run All).
 - Keep the deterministic core path available even when model APIs or Wi-Fi fail.
 - Never place real customer data, credentials, production endpoints, or irreversible tools into the workshop environment.
 - Pre-create four-person teams for the capstone: attacker, control engineer, evidence reviewer, and reporter.

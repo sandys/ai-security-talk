@@ -1,0 +1,54 @@
+# ---- Python / packaging -------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Virtual environments (uv / venv / conda) ---------------------------
+.venv/
+venv/
+env/
+.conda/
+
+# ---- Jupyter --------------------------------------------------------------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+.virtual_documents/
+*.nbconvert.ipynb
+
+# ---- Secrets and local config -------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.guardrailsrc
+modelscan-settings.toml
+
+# ---- Generated workshop evidence (regenerate with verify_notebooks.py) ---
+# Every notebook writes its outputs here. Only the README explaining the
+# folder is tracked; regenerate with `python verify_notebooks.py --mode full`.
+_evidence/*
+!_evidence/README.md
+
+# ---- Tool run artefacts -------------------------------------------------
+garak_runs/
+*.report.jsonl
+*.hitlog.jsonl
+*.report.html
+logs/
+*.eval
+
+# ---- Build outputs --------------------------------------------------------
+*.zip
+
+# ---- OS / editor ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

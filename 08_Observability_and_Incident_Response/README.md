@@ -47,6 +47,6 @@ sequenceDiagram
 - Predefine kill switches: disable a tool, force human approval, route to a safer model, stop retrieval from a source, revoke credentials, or return read-only mode.
 - Use Phoenix or another OpenTelemetry-compatible backend to inspect traces and connect them to eval datasets; control access and retention like any sensitive production data.
 
-Run `08_otel_incident_trace.ipynb`. It exports spans in memory, asserts that raw PII/secrets are absent, detects a simulated incident, and produces a compact incident packet.
+Run `08_otel_incident_trace.ipynb`. It traces the **vulnerable and the constrained agent** with the same allow-listed span schema through the SDK's `InMemorySpanExporter`, asserts that raw PII/secrets are absent from *every* exported attribute (even where the vulnerable agent leaked them to the user), detects the vulnerable agent's incidents purely from span attributes/events, produces an incident packet whose affected implementations are exactly `["vulnerable"]`, and — if `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` is set — ships the same spans to Phoenix or any OTLP/HTTP collector without changing the instrumentation.
 
 **Done means:** a developer can reconstruct the decision path using redacted attributes, identify the control that fired, and replay the incident without searching unstructured logs.

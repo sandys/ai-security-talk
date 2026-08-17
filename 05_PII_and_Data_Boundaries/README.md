@@ -41,6 +41,11 @@ flowchart TD
 - Store raw inputs only where purpose, access, retention, and deletion are explicit. Never use production secrets as test canaries.
 - Measure recall and over-redaction on a labeled, representative corpus by language and document type. Regex alone is an illustrative fallback, not comprehensive PII protection.
 
-Run `05_presidio_redaction.ipynb`. It uses Presidio pattern recognizers without downloading an NLP model, then compares the result with the workshop’s minimal offline log redactor.
+Run `05_presidio_redaction.ipynb`. It builds a real Presidio `AnalyzerEngine` (spaCy `en_core_web_sm`, installed from the lock file — no `spacy download` step) with the predefined recognizers plus two custom `PatternRecognizer`s, then:
+
+1. shows the raw hit list including **false positives** (`UK_NHS` fires at score 1.0 on an Indian mobile number) and overlapping spans, and fixes it with an `entities=[...]` allow-list and `score_threshold`;
+2. measures **recall on a labelled mini-set** — the built-in `EmailRecognizer` misses `name@example.test` because it validates TLDs, spaced phone formats are missed — and closes the gaps with fallback recognizers (67 % → 100 %);
+3. anonymises with one `OperatorConfig` per entity (`replace`, `mask`, `hash`, `keep`) and builds purpose-specific views (model input, general log, HMAC pseudonym for fraud linkage);
+4. asserts that no raw identifier reaches the exported evidence.
 
 **Done means:** direct identifiers are absent from the model/log views, a stable pseudonym is available only for the stated purpose, and redaction evidence is exported without raw sensitive values.

@@ -52,9 +52,16 @@ Do **not** equate a clean scan with security. Track:
 
 ## Run it
 
-1. Run `02A_attack_harness.ipynb` offline.
+1. Run `02A_attack_harness.ipynb` offline. It scores the base corpus **and** six mutations (case, politeness, synonym, spacing, translation, role-play) against both agents.
 2. Add one mutation and one product-specific attack.
-3. Install full dependencies and run `02B_garak_scan.ipynb`.
+3. Run `02B_garak_scan.ipynb`. It lists the installed probes, scans `vulnerable_target.py` **and** `constrained_target.py` with the same probe (`--spec probes.promptinject.HijackHateHumans`, ~2 s each), parses the `.report.jsonl` files into a pandas summary (vulnerable ≈100 % ASR, constrained 0 %), and writes reports to `_evidence/garak/`.
 4. Convert one scanner finding into a deterministic row in the core corpus.
+
+### garak ≥ 0.16 gotchas the lab encodes
+
+- A `--target_type function` target **must return `list[str]`**. Returning a bare `str` makes garak iterate over the characters and silently score each character as a response ("asked for 1 got 13").
+- `--probes` is deprecated; use the unified `--spec` grammar (`probes.<module>[.<Class>]`, `tag:owasp:llm01`, `-probes.dan.DanInTheWild` to exclude).
+- `--report_prefix` is resolved relative to garak's data directory unless it is an **absolute path**.
+- Run garak with `python -m garak` (or `workshop_utils.cli("garak")`) so the kernel's interpreter is used even when the venv `bin/` is not on `PATH`.
 
 **Done means:** the team can explain each attack path, replay it deterministically, and show the exact assertion that would block a release.

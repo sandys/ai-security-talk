@@ -1,31 +1,31 @@
 {
-  "generated_at_utc": "2026-08-17T04:56:16.316084+00:00",
-  "mode": "core",
+  "generated_at_utc": "2026-08-17T06:00:44.030535+00:00",
+  "mode": "full",
   "environment": {
-    "python": "3.13.5",
-    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
-    "recommended_python": "3.12"
+    "python": "3.12.13",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "recommended_python": "3.12",
+    "cwd_semantics": "each notebook executed from its own directory (JupyterLab default)"
   },
   "notebooks_total": 13,
   "static_validated_count": 13,
-  "executed_count": 6,
-  "executed_notebooks": [
-    "00_Start_Here/00_break_the_agent.ipynb",
-    "02_Prompt_Injection_and_Red_Teaming/02A_attack_harness.ipynb",
-    "03_Agent_Tool_Security/03_capability_gates.ipynb",
-    "08_Observability_and_Incident_Response/08_otel_incident_trace.ipynb",
-    "09_Fairness_and_Responsible_AI_Evidence/09B_model_and_system_card.ipynb",
-    "10_Capstone_Secure_RAG_Agent/10_capstone.ipynb"
-  ],
-  "static_only_notebooks": [
-    "01_Threat_Modeling/01_pytm_threat_model.ipynb",
-    "02_Prompt_Injection_and_Red_Teaming/02B_garak_scan.ipynb",
-    "04_Output_Validation_and_Guardrails/04_guardrails_pydantic.ipynb",
-    "05_PII_and_Data_Boundaries/05_presidio_redaction.ipynb",
-    "06_Evaluations_and_Security_Regression/06_inspect_security_eval.ipynb",
-    "07_Model_Supply_Chain/07_modelscan.ipynb",
-    "09_Fairness_and_Responsible_AI_Evidence/09A_fairlearn.ipynb"
-  ],
+  "executed_count": 13,
+  "executed_notebooks": {
+    "00_Start_Here/00_break_the_agent.ipynb": 1.1,
+    "01_Threat_Modeling/01_pytm_threat_model.ipynb": 1.3,
+    "02_Prompt_Injection_and_Red_Teaming/02A_attack_harness.ipynb": 1.0,
+    "02_Prompt_Injection_and_Red_Teaming/02B_garak_scan.ipynb": 5.0,
+    "03_Agent_Tool_Security/03_capability_gates.ipynb": 1.1,
+    "04_Output_Validation_and_Guardrails/04_guardrails_pydantic.ipynb": 4.5,
+    "05_PII_and_Data_Boundaries/05_presidio_redaction.ipynb": 5.6,
+    "06_Evaluations_and_Security_Regression/06_inspect_security_eval.ipynb": 7.8,
+    "07_Model_Supply_Chain/07_modelscan.ipynb": 1.5,
+    "08_Observability_and_Incident_Response/08_otel_incident_trace.ipynb": 1.3,
+    "09_Fairness_and_Responsible_AI_Evidence/09A_fairlearn.ipynb": 3.2,
+    "09_Fairness_and_Responsible_AI_Evidence/09B_model_and_system_card.ipynb": 0.9,
+    "10_Capstone_Secure_RAG_Agent/10_capstone.ipynb": 1.0
+  },
+  "static_only_notebooks": [],
   "failures": {},
   "passed": true
 }

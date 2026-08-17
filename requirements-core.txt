@@ -1,5 +1,9 @@
+# Offline / bad-Wi-Fi fallback ONLY. Runs the six core notebooks (00, 02A, 03, 08, 09B, 10).
+# The full, hash-locked environment is requirements.txt (generated from uv.lock).
 # Recommended interpreter: Python 3.12
 jupyterlab>=4.4,<5
+ipykernel>=6.29,<8
+ipywidgets>=8.1,<9
 nbclient>=0.10,<1
 nbformat>=5.10,<6
 numpy>=2.0,<3
@@ -11,5 +15,6 @@ jsonschema>=4.23,<5
 pytest>=8.3,<10
 opentelemetry-api>=1.30,<2
 opentelemetry-sdk>=1.30,<2
+opentelemetry-exporter-otlp-proto-http>=1.30,<2
 huggingface-hub>=0.30,<2
 jinja2>=3.1,<4

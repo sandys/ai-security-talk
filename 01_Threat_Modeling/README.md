@@ -58,11 +58,13 @@ flowchart TD
 
 ## Guided exercise
 
-1. Run the model in `01_pytm_threat_model.ipynb` and inspect the generated DFD text.
-2. Mark each data flow by **origin trust**, **sensitivity**, **authorization context**, and **side-effect potential**.
-3. Choose three unacceptable outcomes, for example secret disclosure, cross-tenant retrieval, and unauthorized refund.
-4. For each, write an attack path and attach at least one prevention, one detection, and one executable verification.
-5. Commit `rag_agent_tm.py` beside the application code and review it whenever a boundary or tool changes.
+1. Open `01_pytm_threat_model.ipynb`. It imports the model from `rag_agent_tm.py`, calls `tm.resolve()` in-process, and lists the findings — including pytm 1.4's LLM/agent-specific threats (`LLM01`–`LLM09`) that fire because the model declares `hasRAG`, `hasAgentCapabilities`, `hasAccessToSensitiveSystems`, `processesPersonalData`, and `usesExternalTools`.
+2. Flip a control (`llm.controls.implementsPOLP = True`, `llm.hasContentFiltering = True`, `agent.validatesToolLaunchConfig = True`), re-resolve, and watch `LLM05` and friends disappear while `LLM03`/`LLM08` (third-party data leakage, output disclosure) remain until modules 05 and 08 address them.
+3. Generate the DFD (`tm.dfd()` → Graphviz DOT, plus a Mermaid rendering derived from the same flows) and the JSON export via the CLI.
+4. Mark each data flow by **origin trust**, **sensitivity**, **authorization context**, and **side-effect potential**.
+5. Choose three unacceptable outcomes, for example secret disclosure, cross-tenant retrieval, and unauthorized refund.
+6. For each, write an attack path (the notebook asserts every backlog row cites a threat ID pytm actually raised) and attach at least one prevention, one detection, and one executable verification.
+7. Commit `rag_agent_tm.py` beside the application code and review it whenever a boundary or tool changes.
 
 ## Recommended use of `pytm`
 

@@ -53,4 +53,6 @@ Model-based graders can help with nuanced quality, but calibrate them against hu
 
 Run `06_inspect_security_eval.ipynb`, inspect `security_eval.py`, and execute `test_security_contract.py`.
 
+The Inspect task is parametrised (`security_regression(agent="secure" | "vulnerable")`, or `-T agent=...` on the CLI). The notebook runs **both** in-process with `inspect_ai.eval()` — vulnerable scores 0.0, constrained scores 1.0 on the same four samples — then repeats it via the `inspect eval` CLI, reads the `.eval` log back with `read_eval_log()`, and turns the result into an explicit PASS/BLOCK decision. Logs land in `_evidence/inspect_logs/`; open them with `inspect view --log-dir _evidence/inspect_logs`.
+
 **Done means:** hard failures are machine-detectable, utility is measured separately, the run is reproducible, and the release decision names every threshold rather than hiding behind one average score.

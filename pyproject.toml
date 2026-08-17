@@ -1,15 +1,71 @@
 [project]
-name = "responsible-ai-ai-security-developer-workshop"
-version = "1.0.0"
-description = "Hands-on Responsible AI and AI security labs for developers"
+name = "responsible-ai-security-workshop"
+version = "1.1.0"
+description = "Hands-on Responsible AI and AI Security labs for developers (Jupyter, Python 3.12)"
+readme = "README.md"
 requires-python = ">=3.12,<3.13"
+license = { text = "Apache-2.0" }
+
+# Top-level dependencies. Exact transitive versions live in uv.lock and in the
+# exported requirements.txt (both generated: never edit those by hand).
 dependencies = [
-  "jupyterlab>=4.4,<5", "numpy>=2.0,<3", "pandas>=2.2,<3",
-  "scikit-learn>=1.6,<2", "pydantic>=2.10,<3",
-  "opentelemetry-sdk>=1.30,<2", "pytm==1.4.0", "garak==0.16.0",
-  "guardrails-ai==0.11.0", "presidio-analyzer==2.2.364",
-  "presidio-anonymizer==2.2.364", "inspect-ai==0.3.259",
-  "modelscan==0.8.8", "fairlearn==0.14.0"
+  # --- Jupyter + data/plotting core ---------------------------------------
+  "jupyterlab>=4.4,<5",
+  "ipykernel>=6.29,<8",
+  "ipywidgets>=8.1,<9",
+  "nbclient>=0.10,<1",
+  "nbformat>=5.10,<6",
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+  "matplotlib>=3.9,<4",
+  "scikit-learn>=1.6,<2",
+  "pydantic>=2.10,<3",
+  "jsonschema>=4.23,<5",
+  "pytest>=8.3,<10",
+  "jinja2>=3.1,<4",
+  "huggingface-hub>=0.30,<2",
+  # --- Observability (module 08) -------------------------------------------
+  "opentelemetry-api>=1.30,<2",
+  "opentelemetry-sdk>=1.30,<2",
+  "opentelemetry-exporter-otlp-proto-http>=1.30,<2",
+  # torch is a transitive dependency of garak. It is declared here only so the
+  # [tool.uv.sources] CPU-wheel override below applies to it.
+  "torch>=2.4,<3",
+  # --- Specialist security / responsible-AI tools (pinned) -----------------
+  "pytm==1.4.0",
+  "garak==0.16.0",
+  "guardrails-ai==0.11.0",
+  "presidio-analyzer==2.2.364",
+  "presidio-anonymizer==2.2.364",
+  "inspect-ai==0.3.259",
+  "modelscan==0.8.8",
+  "fairlearn==0.14.0",
+  # spaCy English model used by Presidio's AnalyzerEngine (module 05).
+  # Pinned to the wheel release so no `spacy download` step is needed.
+  "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
 ]
+
+[project.optional-dependencies]
+# Optional local trace UI for module 08 (heavy; not needed for the labs).
+phoenix = ["arize-phoenix>=11,<21", "arize-phoenix-otel>=0.9,<1"]
+
+[tool.uv]
+# This repository is a workshop, not an installable library.
+package = false
+
+# garak depends on torch. Force the CPU-only wheels on Linux/Windows so the
+# environment is ~4 GB smaller and installs on conference Wi-Fi. macOS wheels
+# on PyPI are already CPU/MPS builds.
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
 [tool.pytest.ini_options]
 addopts = "-q"
+testpaths = ["06_Evaluations_and_Security_Regression"]

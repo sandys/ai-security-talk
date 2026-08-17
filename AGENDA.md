@@ -8,7 +8,7 @@ The workshop uses slides only for transitions. Every block follows the same rhyt
 |---:|---|---|---|---|
 | 0:00–0:15 | 00 Break the agent | Leak a canary and trigger an unsafe refund | Do not explain frameworks yet. Ask teams to predict the failure first. | Baseline attack-success rate |
 | 0:15–0:35 | 01 Threat model | Mark trust boundaries and three unacceptable outcomes | Keep discussion anchored to actual data flows and side effects. | `pytm` model + owned backlog |
-| 0:35–1:05 | 02 Red team | Extend an attack corpus; run the local harness; inspect the `garak` adapter | Make teams distinguish direct injection, indirect injection, and authorization failure. | Per-category ASR + scan command |
+| 0:35–1:05 | 02 Red team | Extend an attack corpus and its mutations; run the local harness; scan the vulnerable and constrained targets with `garak` and read the reports | Make teams distinguish direct injection, indirect injection, and authorization failure. Point out that the rule-based double resists mutations for the *wrong* reason. | Per-category ASR + two garak reports |
 | 1:05–1:30 | 03 Tool security | Feed valid-looking but unauthorized proposals through a capability gate | Ask: “Which check still works if the model is fully compromised?” | Policy decisions + replay rejection |
 | 1:30–1:40 | Break | Leave the failed exploit and fixed trace visible | — | — |
 | 1:40–2:00 | 04 Output validation | Break JSON/schema/invariants; show valid-but-forbidden output | Stress that validation is not authorization. | Validation report |
@@ -35,7 +35,7 @@ Use this when the room expects a talk but you still want real keyboard time.
 | 1:15–1:28 | Module 10: run the integrated release gate, then break one boundary |
 | 1:28–1:30 | Close: control, evidence, residual risk |
 
-Demonstrate—not run—modules 04, 07, 08, and 09. Give the ZIP as the follow-up lab.
+Demonstrate—not run—modules 04, 07, 08, and 09. Give the repository as the follow-up lab.
 
 ## Full-day extension
 
