@@ -1,0 +1,13 @@
+-r requirements-core.txt
+# Versions selected on 2026-08-17.
+pytm==1.4.0
+garak==0.16.0
+guardrails-ai==0.11.0
+presidio-analyzer==2.2.364
+presidio-anonymizer==2.2.364
+inspect-ai==0.3.259
+modelscan==0.8.8
+fairlearn==0.14.0
+# Optional UI/backend for module 08:
+# arize-phoenix
+# arize-phoenix-otel

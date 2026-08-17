@@ -1,0 +1,21 @@
+{
+  "warning": "Files were created and scanned only; never deserialized.",
+  "inventory": [
+    {
+      "path": "_evidence/model_artifacts/safe_metadata.pkl",
+      "size_bytes": 68,
+      "sha256": "873dfa3f490349f8bf65cb9bf36932b62de6319415e441d673c1244c2d676cd5"
+    },
+    {
+      "path": "_evidence/model_artifacts/suspicious_model.pkl",
+      "size_bytes": 78,
+      "sha256": "81acf9f999bf014bd091f96a3e7a522a9fa0f7e0ea04ff952d4cf28fcab62104"
+    }
+  ],
+  "scan_results": [],
+  "programmatic_results": [],
+  "default_when_scanner_missing": {
+    "outcome": "block",
+    "reason": "SCAN_NOT_RUN"
+  }
+}

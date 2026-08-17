@@ -1,0 +1,64 @@
+{
+  "generated_at_utc": "2026-08-17T04:53:18.365318+00:00",
+  "python": "3.13.5",
+  "purpose": "Execute non-core notebooks in fallback/preflight mode. Specialist cells run only when their pinned modules are installed.",
+  "results": [
+    {
+      "notebook": "01_Threat_Modeling/01_pytm_threat_model.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "pytm",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 3.52,
+      "error": null
+    },
+    {
+      "notebook": "02_Prompt_Injection_and_Red_Teaming/02B_garak_scan.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "garak",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 2.75,
+      "error": null
+    },
+    {
+      "notebook": "04_Output_Validation_and_Guardrails/04_guardrails_pydantic.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "guardrails",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 2.81,
+      "error": null
+    },
+    {
+      "notebook": "05_PII_and_Data_Boundaries/05_presidio_redaction.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "presidio_analyzer",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 2.76,
+      "error": null
+    },
+    {
+      "notebook": "06_Evaluations_and_Security_Regression/06_inspect_security_eval.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "inspect_ai",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 6.03,
+      "error": null
+    },
+    {
+      "notebook": "07_Model_Supply_Chain/07_modelscan.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "modelscan",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 2.7,
+      "error": null
+    },
+    {
+      "notebook": "09_Fairness_and_Responsible_AI_Evidence/09A_fairlearn.ipynb",
+      "notebook_execution": "passed",
+      "specialist_module": "fairlearn",
+      "specialist_module_installed": false,
+      "elapsed_seconds": 5.72,
+      "error": null
+    }
+  ],
+  "passed": true
+}
